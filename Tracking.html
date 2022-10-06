@@ -62,10 +62,14 @@
 
 
     <!-- api for map  -->
+
     <script
         src="https://apis.mappls.com/advancedmaps/api/1c218122c2faecd696c1b194f6a3ab09/map_sdk?layer=vector&v=3.0&callback=initMap1"></script>
     <script
-        src="https://apis.mappls.com/advancedmaps/api/a628761b-1279-4bb0-b7a3-550900d69a50/map_sdk_plugins?v=3.0"></script>
+        src="https://apis.mappls.com/advancedmaps/api/62899133-0d46-4200-b44f-97b45068e51f/map_sdk_plugins?v=3.0"></script>
+        <script src="https://apis.mapmyindia.com/advancedmaps/api/62899133-0d46-4200-b44f-97b45068e51f/map_sdk_plugins?v=3.0&libraries=direction"></script>
+
+
 
     <!-- api call  -->
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
@@ -277,10 +281,10 @@
                     callback: function (data) { }
                 }
                 direction_plugin = mappls.direction(direction_option);
-                console.log("SDSSDS",direction_plugin)
-            
+                console.log("SDSSDS", direction_plugin)
+
                 add = setInterval(() => {
-                    console.log("Refreshing data",direction_plugin)
+                    console.log("Refreshing data", direction_plugin)
                     fetch("http://65.1.129.194:3000/getorderdetails/199")
                         .then((data) => {
                             return data.json();
@@ -288,7 +292,7 @@
                         })
                         .then((dataresp) => {
                             console.log("Refresh response ", dataresp.data)
-                            console.log("direction_plugin",direction_plugin)
+                            console.log("direction_plugin", direction_plugin)
                             direction_plugin.tracking({
                                 location: dataresp.data[0].source_latlong,
                                 label: 'current location',
@@ -297,7 +301,7 @@
                                 reRoute: true,
                                 fitBounds: true,
                                 animationSpeed: 5,
-                                // delay: 2000
+                                 delay: 2000
                             });
 
                         })
