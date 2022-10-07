@@ -119,7 +119,8 @@
     let params = new URLSearchParams(window.location.search)
   console.log("queryParams",params.get('id'))
 
-    fetch(`http://65.1.129.194:3000/getorderdetails/${params.get('id')}`)
+    // fetch(`http://65.1.129.194:3000/getorderdetails/${params.get('id')}`)
+    fetch(`http://65.1.129.194:3000/getorderdetails/199`)
         .then((data) => {
             return data.json();
             //  console.log('ssss',data)
@@ -257,7 +258,8 @@
 
                 add = setInterval(() => {
                     console.log("Refreshing data", direction_plugin)
-                    fetch(`http://65.1.129.194:3000/getorderdetails/${params.get('id')}`)
+                    // fetch(`http://65.1.129.194:3000/getorderdetails/${params.get('id')}`)
+                    fetch(`http://65.1.129.194:3000/getorderdetails/199`)
                         .then((data) => {
                             return data.json();
                             //  console.log('ssss',data)
