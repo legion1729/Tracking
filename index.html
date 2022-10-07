@@ -146,7 +146,7 @@
                 <div class="col">
                     <div class="card">
                         <div class="card-body shadow p-3 bg-white rounded">
-                            <h4 class="card font-italic font-weight-normal text-left">Order #${item.order_id}</h4>
+                            <h4 class="card font-italic font-weight-normal text-left">Order #${item ?.order_id}</h4>
                             <div class="row">
                                 <div class="col-sm">
                                     <ol class="list-group list-group">
@@ -162,8 +162,8 @@
                                         <li class="list-group-item d-flex justify-content-between align-items-start">
                                             <div class="ms-2 me-auto fw-lighter" style="font-size: '0.7rem' ;">
                                                 <div class="fw-bold"><img class="navbar-brand" src='mkr_start.png'
-                                                        style="height:20px; width: 20px;"> Home</div>
-                                            ${item.source_address.Adress} &nbsp; ${item.source_address.house_no}
+                                                        style="height:20px; width: 20px;"> Delivery address</div>
+                                            ${item.source_address?.Adress} &nbsp; ${item.source_address?.house_no}
 
                                             </div>
                                         </li>
@@ -174,52 +174,16 @@
                                                 : &nbsp;
                                             ${item.destination_address.Adress}
                                             ${item.destination_address.house_no}
-                                                <span>by ${item.deleviery_boy_details.name}  </span>
+                                                <span>by ${item.deleviery_boy_details?.name}  </span>
                                             </div>
                                         </li>
                                     </ol>
 
                                 </div>
-                                <div class="col-sm shadow-sm">
-                                    <img src="img_avatar.png" alt="Avatar" class="avatar">
-                                    <div class="card-body shadow p-3 bg-white rounded">
-                                        <div className='rcorners2'>
-                                            <ul class="b">
-                                                <li>Name : ${item.deleviery_boy_details.name} </li>
-                                                <li>Contact no : ${item.deleviery_boy_details.number}</li>
-                                            </ul>
-                                        </div>
-
-                                    </div>
-
-                                </div>
+                             
                             </div>
                             <br />
-                            <ol class="list-group list-group">
-                                <li class="list-group-item d-flex justify-content-between align-items-start">
-                                    <div class="ms-2 me-auto" style="font-size: '0.7rem' ;">
-                                        <div class="fw-bold">Item total</div>
-                                        <ol class="fw-lighter" style="text-align: 'initial';">
-                                                ${item.order_details.details?.map(e=>{
-                                                    return(
-                                                        `<li>${e.product} &nbsp; ${e.quantity}</li>`
-                                                    )
-                                                })}
-                                           </ol>
-
-                                    </div>
-                                    <span class="badge bg-primary rounded-pill"> ${item.total_quantity}</span>
-                                </li>
-                                <br />
-                                <li class="list-group-item-flush d-flex justify-content-between align-items-start ">
-                                    <div class="ms-2 me-auto" style="font-size: '0.7rem';">
-                                        <div class="fw-bold">Total Price</div>
-
-                                    </div>
-                                    <span class="badge bg-success rounded-pill">₹ ${item.total_price}</span>
-                                </li>
-
-                            </ol>
+                       
 
                         </div>
                     </div>
