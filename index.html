@@ -63,7 +63,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
         crossorigin="anonymous"></script>
-    
 
 
 
@@ -120,7 +119,7 @@
     let params = new URLSearchParams(window.location.search)
   console.log("queryParams",params.get('id'))
 
-    fetch(`https://65.1.129.194:3000/getorderdetails/${params.get('id')}`)
+    fetch(`http://65.1.129.194:3000/getorderdetails/${params.get('id')}`)
         .then((data) => {
             return data.json();
             //  console.log('ssss',data)
@@ -258,7 +257,7 @@
 
                 add = setInterval(() => {
                     console.log("Refreshing data", direction_plugin)
-                    fetch(`https://65.1.129.194:3000/getorderdetails/${params.get('id')}`)
+                    fetch(`http://65.1.129.194:3000/getorderdetails/${params.get('id')}`)
                         .then((data) => {
                             return data.json();
                             //  console.log('ssss',data)
