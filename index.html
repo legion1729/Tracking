@@ -37,6 +37,10 @@
 
         }
 
+        .map-control {
+            display: none !important;
+        }
+
         ul.b {
             list-style-type: square;
 
@@ -110,8 +114,12 @@
     // window.setInterval(function(){
     var locSource = {};
 
+    var queryParams = window.location.search;
+    var listQueries = queryParams.split("&");
+    let params = new URLSearchParams(window.location.search)
+  console.log("queryParams",params.get('id'))
 
-    fetch("http://65.1.129.194:3000/getorderdetails/199")
+    fetch(`http://65.1.129.194:3000/getorderdetails/${params.get('id')}`)
         .then((data) => {
             return data.json();
             //  console.log('ssss',data)
@@ -192,11 +200,12 @@
                                     <div class="ms-2 me-auto" style="font-size: '0.7rem' ;">
                                         <div class="fw-bold">Item total</div>
                                         <ol class="fw-lighter" style="text-align: 'initial';">
-
-                                            <li>${item.order_details.details[0].product} &nbsp; x ${item.order_details.details[0].quantity}</li>
-                                            <li>${item.order_details.details[1].product}&nbsp; x ${item.order_details.details[1].quantity}</li>
-                                            <li>${item.order_details.details[2].product} x ${item.order_details.details[2].quantity}</li>
-                                        </ol>
+                                                ${item.order_details.details?.map(e=>{
+                                                    return(
+                                                        `<li>${e.product} &nbsp; ${e.quantity}</li>`
+                                                    )
+                                                })}
+                                           </ol>
 
                                     </div>
                                     <span class="badge bg-primary rounded-pill"> ${item.total_quantity}</span>
@@ -284,7 +293,7 @@
 
                 add = setInterval(() => {
                     console.log("Refreshing data", direction_plugin)
-                    fetch("http://65.1.129.194:3000/getorderdetails/199")
+                    fetch(`http://65.1.129.194:3000/getorderdetails/${params.get('id')}`)
                         .then((data) => {
                             return data.json();
                             //  console.log('ssss',data)
