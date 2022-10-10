@@ -72,9 +72,9 @@
     <script
         src="https://apis.mappls.com/advancedmaps/api/1c218122c2faecd696c1b194f6a3ab09/map_sdk?layer=vector&v=3.0&callback=initMap1"></script>
     <script
-        src="https://apis.mappls.com/advancedmaps/api/fbde3eb1-808d-4c9a-b9d2-b79e45085110/map_sdk_plugins?v=3.0"></script>
+        src="https://apis.mappls.com/advancedmaps/api/293d4730-4187-47f4-b696-5201ef1f93ba/map_sdk_plugins?v=3.0"></script>
     <script
-        src="https://apis.mapmyindia.com/advancedmaps/api/fbde3eb1-808d-4c9a-b9d2-b79e45085110/map_sdk_plugins?v=3.0&libraries=direction"></script>
+        src="https://apis.mapmyindia.com/advancedmaps/api/293d4730-4187-47f4-b696-5201ef1f93ba/map_sdk_plugins?v=3.0&libraries=direction"></script>
 
 
 
@@ -130,6 +130,20 @@
         }).then((dataresp) => {
             let data1 = ""
             dataresp.data.map((item) => {
+
+                if (dataresp.data[0].delivery_status?.status == 'Delivered') {
+
+                    clearInterval(add);
+                    setTimeout(() => {
+                        document.write(`
+
+<div class="container">
+<div class="card" style="width: 18rem;">
+<img src="image/SessionExpired.png" class="card-img-top" alt="..." style="margin-left: 24rem;">
+</div></div>
+`)
+                    }, 100);
+                }
                 console.log(item, 'wwww')
                 locSource = item.source_latlong;
                 data1 = `
@@ -286,19 +300,19 @@
                                 delay: 2000,
 
                             });
-                            if (dataresp.data[0].delivery_status?.status == 'Dilevered') {
+                            //                             if (dataresp.data[0].delivery_status?.status == 'Delivered') {
 
-                                clearInterval(add);
-                                setTimeout(() => {
-                                    document.write(`
-                             
-                                <div class="container">
-                            <div class="card" style="width: 18rem;">
-  <img src="image/SessionExpired.png" class="card-img-top" alt="..." style="margin-left: 24rem;">
-</div></div>
-                                `)
-                                }, 500);
-                            }
+                            //                                 clearInterval(add);
+                            //                                 setTimeout(() => {
+                            //                                     document.write(`
+
+                            //                                 <div class="container">
+                            //                             <div class="card" style="width: 18rem;">
+                            //   <img src="image/SessionExpired.png" class="card-img-top" alt="..." style="margin-left: 24rem;">
+                            // </div></div>
+                            //                                 `)
+                            //                                 }, 100);
+                            //                             }
                         })
                 }, 10000);
             });
