@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
 <html>
+
 <head>
     <title>Vishala mega mart tracking</title>
     <meta name="viewport" content="initial-scale=1.0">
@@ -68,9 +69,12 @@
 
     <!-- api for map  -->
 
-    <script    src="https://apis.mappls.com/advancedmaps/api/1c218122c2faecd696c1b194f6a3ab09/map_sdk?layer=vector&v=3.0&callback=initMap1"></script>
-    <script    src="https://apis.mappls.com/advancedmaps/api/fbde3eb1-808d-4c9a-b9d2-b79e45085110/map_sdk_plugins?v=3.0"></script>
-    <script    src="https://apis.mapmyindia.com/advancedmaps/api/fbde3eb1-808d-4c9a-b9d2-b79e45085110/map_sdk_plugins?v=3.0&libraries=direction"></script>
+    <script
+        src="https://apis.mappls.com/advancedmaps/api/1c218122c2faecd696c1b194f6a3ab09/map_sdk?layer=vector&v=3.0&callback=initMap1"></script>
+    <script
+        src="https://apis.mappls.com/advancedmaps/api/fbde3eb1-808d-4c9a-b9d2-b79e45085110/map_sdk_plugins?v=3.0"></script>
+    <script
+        src="https://apis.mapmyindia.com/advancedmaps/api/fbde3eb1-808d-4c9a-b9d2-b79e45085110/map_sdk_plugins?v=3.0&libraries=direction"></script>
 
 
 
@@ -117,7 +121,7 @@
     var queryParams = window.location.search;
     var listQueries = queryParams.split("&");
     let params = new URLSearchParams(window.location.search)
-  console.log("queryParams",params.get('id'))
+    console.log("queryParams", params.get('id'))
 
     fetch(`http://65.1.129.194:3000/getorderdetails/${params.get('id')}`)
         .then((data) => {
@@ -146,7 +150,7 @@
                 <div class="col">
                     <div class="card">
                         <div class="card-body shadow p-3 bg-white rounded">
-                            <h4 class="card font-italic font-weight-normal text-left">Order #${item ?.order_id}</h4>
+                            <h4 class="card font-italic font-weight-normal text-left">Order #${item?.order_id}</h4>
                             <div class="row">
                                 <div class="col-sm">
                                     <ol class="list-group list-group">
@@ -204,7 +208,7 @@
             initMap1(one, two, three, four)
 
         }).catch(err =>
-            console.error(err,'qweqwqweqwq')
+            console.error(err, 'qweqwqweqwq')
         );
 
     // }, 5000);
@@ -246,10 +250,10 @@
                     start: { label: 'start', geoposition: `${source_lat},${source_long}` },
                     end: { label: 'Reached', geoposition: `${destination_lat},${destination_long}` },
                     start_icon: {
-                                url: "image/vishal_mega.png",
-                                width: 40, //optional
-                                height: 45 //optional
-                            },
+                        url: "image/vishal_mega.png",
+                        width: 40, //optional
+                        height: 45 //optional
+                    },
 
                     steps: true,
                     search: false,
@@ -268,6 +272,7 @@
                             //  console.log('ssss',data)
                         })
                         .then((dataresp) => {
+                            console.log(dataresp, 'qqqqq')
                             console.log("Refresh response ", dataresp.data)
                             console.log("direction_plugin", direction_plugin)
                             direction_plugin.tracking({
@@ -278,10 +283,22 @@
                                 reRoute: true,
                                 fitBounds: true,
                                 animationSpeed: 5,
-                                 delay: 2000
+                                delay: 2000,
+
                             });
-                            clearInterval(add); 
-                            setTimeout(() => {alert("reached.");}, 500);
+                            if (dataresp.data[0].delivery_status?.status == 'Dilevered') {
+
+                                clearInterval(add);
+                                setTimeout(() => {
+                                    document.write(`
+                             
+                                <div class="container">
+                            <div class="card" style="width: 18rem;">
+  <img src="image/SessionExpired.png" class="card-img-top" alt="..." style="margin-left: 24rem;">
+</div></div>
+                                `)
+                                }, 500);
+                            }
                         })
                 }, 10000);
             });
