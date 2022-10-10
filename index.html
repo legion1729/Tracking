@@ -69,8 +69,8 @@
     <!-- api for map  -->
 
     <script    src="https://apis.mappls.com/advancedmaps/api/1c218122c2faecd696c1b194f6a3ab09/map_sdk?layer=vector&v=3.0&callback=initMap1"></script>
-    <script    src="https://apis.mappls.com/advancedmaps/api/8251edd5-b95d-4828-aded-ec8def769622/map_sdk_plugins?v=3.0"></script>
-    <script    src="https://apis.mapmyindia.com/advancedmaps/api/8251edd5-b95d-4828-aded-ec8def769622/map_sdk_plugins?v=3.0&libraries=direction"></script>
+    <script    src="https://apis.mappls.com/advancedmaps/api/fbde3eb1-808d-4c9a-b9d2-b79e45085110/map_sdk_plugins?v=3.0"></script>
+    <script    src="https://apis.mapmyindia.com/advancedmaps/api/fbde3eb1-808d-4c9a-b9d2-b79e45085110/map_sdk_plugins?v=3.0&libraries=direction"></script>
 
 
 
@@ -131,7 +131,7 @@
                 data1 = `
                 <nav class="navbar navbar-expand-lg bg-light shadow-sm">
                 <div class="container-fluid">
-                    <img class="navbar-brand" src='logovishal.png' style="height:70px; width: 80px;"></img>
+                    <img class="navbar-brand" src='image/logovishal.png' style="height:70px; width: 80px;"></img>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -161,7 +161,7 @@
                                         </li> -->
                                         <li class="list-group-item d-flex justify-content-between align-items-start">
                                             <div class="ms-2 me-auto fw-lighter" style="font-size: '0.7rem' ;">
-                                                <div class="fw-bold"><img class="navbar-brand" src='mkr_start.png'
+                                                <div class="fw-bold"><img class="navbar-brand" src='image/mkr_start.png'
                                                         style="height:20px; width: 20px;"> Delivery address</div>
                                             ${item.source_address?.Adress} &nbsp; ${item.source_address?.house_no}
 
@@ -246,7 +246,7 @@
                     start: { label: 'start', geoposition: `${source_lat},${source_long}` },
                     end: { label: 'Reached', geoposition: `${destination_lat},${destination_long}` },
                     start_icon: {
-                                url: "vishal_mega.png",
+                                url: "image/vishal_mega.png",
                                 width: 40, //optional
                                 height: 45 //optional
                             },
