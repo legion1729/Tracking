@@ -2,7 +2,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
 <html>
 <head>
-    <title>Vishala mega mart tracking</title>
+    <title>Delivery Route VMM</title>
     <meta name="viewport" content="initial-scale=1.0">
     <meta charset="utf-8">
     <style>
@@ -260,7 +260,7 @@
                 direction_plugin = mappls.direction(direction_option);
                 console.log("SDSSDS", direction_plugin)
 
-                add = setInterval(() => {
+                // add = setInterval(() => {
                     console.log("Refreshing data", direction_plugin)
                     fetch(`http://65.1.129.194:3000/getorderdetails/${params.get('id')}`)
                         .then((data) => {
@@ -280,10 +280,9 @@
                                 animationSpeed: 5,
                                  delay: 2000
                             });
-                            clearInterval(add); 
-                            setTimeout(() => {alert("reached.");}, 500);
+
                         })
-                }, 10000);
+                // }, 10000);
             });
 
         }
