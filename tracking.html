@@ -5,7 +5,7 @@
 <html>
 
 <head>
-    <title>Polyline Route</title>
+    <title>Route</title>
     <meta name="viewport" content="initial-scale=1.0">
     <meta charset="utf-8">
     <style>
@@ -28,7 +28,7 @@
 
 <body>
 
-    <div id="map" style="width: 800px;"></div>
+    <div id="map"></div>
     <script>
         var map, polyline;
         async function initMap1() {
@@ -53,6 +53,7 @@
                 console.log('ssss', data)
             }).then((dataresp) => {
                 console.log(dataresp, '-----')
+
                 map = new mappls.Map('map', {
                     center: [28.544, 77.5454],
                     zoomControl: true,
@@ -73,11 +74,60 @@
                 })
 
 
+                var geoData = {
+                    "type": "FeatureCollection",
+                    "features": [{
+                        "type": "Feature",
+                        "properties": {
+                            "htmlPopup": "End",
+                            "icon": "image/resizedtr.png"
+                            
+                        },
+                        // start
+                        "geometry": {
+                            "type": "Point",
+                            "coordinates": [t[0].lat, t[0].lng]
+                        }
+                    }, {
+                        "type": "Feature",
+                        "properties": {
+                            "description": "Start",
+                            "icon" :"image/resizedstr.png",
+                        },
+                        //stop
+                        "geometry": {
+                            "type": "Point",
+                            "coordinates": [t[t.length - 1].lat, t[t.length - 1].lng]
+                        }
+                    }
+                    ]
+                };
+
+
+
+
                 map.addListener('load', async function () {
                     var pts = t
 
                     console.log("sda", t)
 
+                    var marker = mappls.Marker({
+                        map: map,
+                        position: geoData,
+                        // icon_url: 'image/start_route.png',
+                        // icon_url: 'image/vishal_mega.png',
+                        fitbounds: true,
+                        clusters: false,
+                        fitboundOptions: {
+                            padding: 120,
+                            duration: 1000
+                        },
+                        popupOptions: {
+                            offset: {
+                                'bottom': [0, -20]
+                            }
+                        }
+                    });
 
                     polyline = new mappls.Polyline({
                         map: map,
